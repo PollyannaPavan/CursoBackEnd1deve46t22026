@@ -8,7 +8,16 @@
     <body>
          <h1>Olá Alunos!!! Vamos Aprender PHP???</h1>
         <?php 
-      echo "Hello, World!!!"
+        // utilização de Tagm <?php "aqui vai o código PHP" >
+        // Para imprimir algo usamos o código "echo"
+        echo "Hello, World!!!";
+        // Será Exibido um parágrafo com o texto acima
+        echo "Esse é um código PHP que será exibido";
+        # Esse é um comentário, não será exibido 
+        echo "Esse será exibido também";
+        /* Essa é outra forma de fazer comentário*/ 
+        // Sempre fechar as linhas de comando PHP com ":" => Para o PHP entender que o comando foi finalizado
+        
         ?>
         
     </body>
