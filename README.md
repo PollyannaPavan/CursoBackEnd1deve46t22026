@@ -260,3 +260,133 @@ if($valorCompra > 100){
     $valorFinal = $valorCompra * 0.95;
 }
 ```
+- Uso `elseif` (If Encadeado) => Estrutura usada para manipulação de dados de duas ou mais condicionais.
+Exemplo: Compras acima de 200 reais tem 15% de desconto, compras acima de 10 reais tem 10% de desconto e demais compras de 5% desconto
+
+```mermaid
+
+graph LR 
+
+    A[Comando] --> B{Condição 1}
+    B --> |true| C[Ação 1]
+    B --> |false| D{Condição 2}
+    D --> |true| E[Ação 2]
+    D --> |false| F[Ação 3]
+```
+
+```php
+
+if($valorCompra > 200){
+    $valorFinal = $valorCompra * 0.85;
+} elseif($valorCompra > 100) {
+    $valorFinal = $valorCompra * 0.9;
+} else {
+    $valorFinal = $valorCompra * 0.95;
+}
+
+```
+
+*Obs*: Sempre usar `elseif` para situações que precisam de mais de uma condição, ou seja, fazer encadeamento das condições
+
+- Uso *ERRADDO* do if 
+
+```php 
+
+if($valorCompra > 200) {
+    $valorFinal = $valorCompra * 0.85;
+}
+if($valorCompra > 100) {
+    $valorFinal = $valorCompra * 0.9;
+} else {
+    $valorFinal = $valorCompra * 0.95
+}
+
+```
+
+#### Operador Ternários
+
+Um atalho para a estrutura condicional `if/else`, normalmente escrita em uma ´´única linha de código.
+
+` condição ? verdadeira : falsa ` 
+
+Perfeito para decisões curtas de uma linha de comando
+
+Exemplo: Verificar se a pessoa é maaior de idade (18);
+
+```php
+
+$idade = 20;
+//O formato é (Condição) ? Verdadeiro : Falso;
+
+$status = ($idade>=18) ? "Maior de idade" : "Menor de idade";
+$status2 = ($idade>=60) ? "Idoso" : ($idade>=18) ? "Adulto" : "Criança" ;
+
+echo $status //
+
+```
+
+#### Expressão Condicional `match` (PHP 8)
+
+No mercado atual de PHP, não se uma mais uma `Switch/Case` para chegar valores fixos, usa-se o `match`. Ele compara um valor e retoran diretamente o resultado caso atenda a condição.
+
+```mermaid
+
+graph TD
+    A[Valor] --> B{Condicional}
+    B --> C[Ação 1]
+    B --> D[Ação 2]
+    B --> E[Ação 3]
+    B --> F[Ação 4]
+    B --> G[Ação ...]
+    B --> H[Ação default]
+
+```
+
+Exemplo: Selecionar o Dia da Semana a partir dee um Nº 
+
+```php
+
+$diaSemana = date("W"); // Pega o Dia da semana em formto numérico
+
+$nomeDiaSemana = match($diaSemanaNu) {
+    "0" => "Domingo",
+    "1" => "Segunda",
+    "2" => "Terça",
+    "3" => "Quarta",
+    "4" => "Quinta",
+    "5" => "Sexta",
+    "6" => "Sábado",
+    "default" => "Dia Inválido"
+};
+
+echo " Hoje é : $nomeDiaSemana";
+
+```
+
+---
+
+#### Laços de Repetição
+
+Um laço de repetição faz com que um bloco de código rode várias vezes até que uma condição mande parar.
+
+- O Laço While (Enquanto)
+
+Ele verifica se a condição é verdadeira ANTES de entrar no laço. Ideal quando você não sabe exatamente quantas vezes vai rodar o laço. 
+
+```mermaid
+
+graph LR
+
+   A[Início: contador = 0] --> B{Verdade?}
+    B -- Sim --> C[Repete]
+    C --> D[executa código]
+    D --> B
+    B -- Não --> E[Fim do Laço]
+
+```
+
+Exemplo de Aplicação do While:
+
+```
+
+- O Laço `do-while`
