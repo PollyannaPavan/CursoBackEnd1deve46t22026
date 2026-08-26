@@ -13,6 +13,6 @@ function formatarNome(string $nome): string
     return $nome;
 }
 
-echo formatarNome("   JOÃO   ") . "\n";
-echo formatarNome("mARIA") . "\n";
-echo formatarNome("   pedro   ") . "\n";
+echo formatarNome("   Julia   ") . "\n";
+echo formatarNome("mAYNE") . "\n";
+echo formatarNome("ALICE") . "\n";
