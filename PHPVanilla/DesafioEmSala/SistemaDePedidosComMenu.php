@@ -25,10 +25,12 @@ $opcao = readline();
 
 // usar uma estrutura para abrir possibilidades de código
 if($opcao==1){
-    echo $produtos
+    print_r ($produtos);
 } else if($opcao==2){
     echo "Escolha os Produtos";
-}else
+} else {
+    echo "Opção inválida\n";
+}
 
-
-} while($opcao=="0");
+} 
+while($opcao=="0");
