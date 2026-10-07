@@ -1,12 +1,10 @@
 <?php
 declare(strict_types=1);
 
-// Parte B: Exercícios Práticos de Laboratório
 // Exercício 3: Alternador de Ambientes (Desenvolvimento vs Homologação)
 
-/**
- * Carrega as configurações do ambiente escolhido.
- */
+// Carrega as configurações do ambiente escolhido.
+
 function carregarAmbiente(string $ambiente): array
 {
     $configuracoes = parse_ini_file(
@@ -30,13 +28,13 @@ function carregarAmbiente(string $ambiente): array
 }
 
 try {
-    // Escolhe o ambiente.
+    // Define qual ambiente será usado.
     $ambiente = 'development';
 
-    // Carrega as configurações.
+    // Pega as configurações do ambiente.
     $config = carregarAmbiente($ambiente);
 
-    // Monta a conexão com o PostgreSQL.
+    // Monta os dados para conectar ao PostgreSQL.
     $dsn = "pgsql:host={$config['db_host']};"
         . "port={$config['db_port']};"
         . "dbname={$config['db_name']}";

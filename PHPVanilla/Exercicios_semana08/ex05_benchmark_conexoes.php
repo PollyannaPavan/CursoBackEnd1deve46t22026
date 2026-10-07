@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-// Parte B: Exercícios Práticos de Laboratório
 // Exercício 5: Medidor de Desempenho e Pool de Conexões
 
 // Importa a classe responsável pela conexão Singleton.
@@ -10,12 +9,11 @@ require_once __DIR__ . '/ConexaoBanco.php';
 // Define o caminho do arquivo de configuração.
 const ARQUIVO_CONFIG = __DIR__ . '/config/database.ini';
 
-// Define a quantidade de testes realizados.
+// Define quantas vezes o teste será executado.
 const TOTAL_TESTES = 50;
 
-/**
- * Carrega as configurações do banco.
- */
+// Carrega as configurações do banco.
+
 function carregarConfiguracao(): array
 {
     // Lê as configurações do arquivo database.ini.
@@ -31,9 +29,8 @@ function carregarConfiguracao(): array
     return $config;
 }
 
-/**
- * Cria uma nova conexão PDO.
- */
+// Cria uma nova conexão PDO.
+
 function criarConexao(array $config): PDO
 {
     // Monta a string DSN usando os dados do PostgreSQL.
@@ -63,9 +60,8 @@ function criarConexao(array $config): PDO
     );
 }
 
-/**
- * Mede o desempenho de 50 conexões novas.
- */
+// Testa várias conexões novas.
+
 function testarNovasConexoes(array $config): array
 {
     // Inicia a contagem do tempo e da memória.
@@ -82,16 +78,15 @@ function testarNovasConexoes(array $config): array
     return criarResultado($inicio, $memoriaInicial);
 }
 
-/**
- * Mede o desempenho utilizando o Singleton.
- */
+// Mede o desempenho utilizando o Singleton.
+
 function testarSingleton(): array
 {
     // Inicia a contagem do tempo e da memória.
     $inicio = microtime(true);
     $memoriaInicial = memory_get_usage();
 
-    // Reutiliza a mesma conexão nas 50 chamadas.
+    // Usa a mesma conexão nas 50 chamadas.
     for ($i = 0; $i < TOTAL_TESTES; $i++) {
         $conexao = ConexaoBanco::obterConexao(ARQUIVO_CONFIG);
     }
@@ -100,9 +95,8 @@ function testarSingleton(): array
     return criarResultado($inicio, $memoriaInicial);
 }
 
-/**
- * Calcula o tempo e a memória utilizados.
- */
+// Calcula o tempo e a memória utilizados.
+
 function criarResultado(float $inicio, int $memoriaInicial): array
 {
     // Calcula quanto tempo e memória foram utilizados.
@@ -112,9 +106,8 @@ function criarResultado(float $inicio, int $memoriaInicial): array
     ];
 }
 
-/**
- * Formata os resultados para a tabela.
- */
+// Organiza os resultados para mostrar na tabela.
+
 function formatarResultado(array $resultado): string
 {
     // Formata o tempo com seis casas decimais.
@@ -127,18 +120,17 @@ function formatarResultado(array $resultado): string
     return "<td>{$tempo} s</td><td>{$memoria} bytes</td>";
 }
 
-/**
- * Exibe uma linha da tabela HTML.
- */
+// Mostra uma linha da tabela HTML.
+
 function exibirLinha(string $metodo, array $resultado): void
 {
     // Inicia uma nova linha da tabela.
     echo '<tr>';
 
-    // Exibe o nome do método utilizado.
+    // Mostra o nome do método utilizado.
     echo "<td>{$metodo}</td>";
 
-    // Exibe o tempo e a memória utilizados.
+    // Mostra o tempo e a memória utilizados.
     echo formatarResultado($resultado);
 
     // Finaliza a linha da tabela.
@@ -202,13 +194,13 @@ try {
 
             <?php
 
-            // Exibe o resultado das 50 novas conexões.
+            // Mostra o resultado das 50 novas conexões.
             exibirLinha(
                 '50 novas conexões com PDO',
                 $resultadoNovas
             );
 
-            // Exibe o resultado das chamadas utilizando Singleton.
+            // Mostra o resultado das chamadas utilizando Singleton.
             exibirLinha(
                 '50 chamadas reutilizando Singleton',
                 $resultadoSingleton
